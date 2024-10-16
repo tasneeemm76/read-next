@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ book.title }} Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        h1 {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .book-info {
+            display: flex;
+            justify-content: space-between;
+            margin: 20px;
+        }
+        .book-info h2 {
+            font-size: 24px;
+        }
+        .book-info h3,
+        .book-info p {
+            font-size: 16px;
+        }
+        .book-info img {
+            max-width: 200px;
+            height: auto;
+            margin-left: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>{{ book.title }} Details</h1>
+    <div class="book-info">
+        <div class="book-details">
+            <h2>Title: {{ book.title }}</h2>
+            <h3>Author: {{ book.author }}</h3>
+            <p>Description: {{ book.description }}</p>
+            <p>Publication Date: {{ book.publication_date }}</p>
+        </div>
+        {% if book.image %}
+            <img src="{{ book.image.url }}" alt="Book Cover">
+        {% endif %}
+    </div>
+</body>
+</html>

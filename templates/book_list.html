@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book List</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/book_details.css' %}">
+</head>
+<body>
+    <h1>Book List</h1>
+    <div class="container">
+        {% for book in books %}
+        <div class="book">
+            <div class="book-info">
+                <h1 class="title">TITLE: {{ book.title }}</h1>
+                <h2 class="author">AUTHOR: {{ book.author }}</h2>
+                <p class="description">DESCRIPTION :{{ book.description }}</p>
+                <p class="details"><strong>Publication Date:</strong> {{ book.publication_date }}</p>
+            </div>
+            
+            <div class="review-section">
+                <h2>Reviews</h2>
+                <div class="reviews">
+                    <!-- Existing reviews will be displayed here -->
+                    {% if book.review_set.exists %}
+                        <div class="review">
+                            {% if username %}
+                                <p class="username">POST AS: {{ username }}</p>
+                            {% else %}
+                                <p class="username">POST AS: Anonymous</p>
+                            {% endif %}
+                            {% for review in book.review_set.all %}
+                                <p class="text">{{ review.comment }}</p>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        <p>No reviews yet.</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</body>
+</html>
